@@ -22,8 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#firebase
-.firebaserc
-src/confidential
-.firebase/hosting.YnVpbGQ.cache
-
+#ignore dot . file and folder
+.firebase
+src/confidential/
