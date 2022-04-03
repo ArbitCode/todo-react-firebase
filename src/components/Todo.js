@@ -29,8 +29,8 @@ export const Todo = ({arr})=>{
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={arr.item.todo} secondary={dateFormate(arr?.item?.timestamp?.toMillis())}/>
-            </ListItem>
             <DeleteForever fontSize='large' onClick = {()=> {db.collection('todos').doc(arr.id).delete()}}/>
+            </ListItem>
         </List>
     )
 }
