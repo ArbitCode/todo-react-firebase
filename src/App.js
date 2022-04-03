@@ -34,7 +34,7 @@ function App() {
       <h1>React Todo</h1>
       <form>
         <FormControl>
-          <InputLabel>Write a task here</InputLabel>
+          <InputLabel>Write a task here...</InputLabel>
           <Input value={input} onChange={e => setInput(e.target.value)}/>
         </FormControl>
           <Button type='submit' onClick={addTodo} variant="contained" color='primary' disabled={!input}>Add Todo</Button>
