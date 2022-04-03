@@ -25,5 +25,5 @@ yarn-error.log*
 #firebase
 .firebaserc
 .firebase
-src/firebase.js
+src/confidential
 

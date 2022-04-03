@@ -2,7 +2,7 @@ import { FormControl, InputLabel, Button, Input, Snackbar } from '@material-ui/c
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Todo } from './components/Todo';
-import {db} from './firebase'
+import {db} from './confidential/firebase'
 import firebase from 'firebase/compat/app';
 
 
@@ -31,10 +31,10 @@ function App() {
 
   return (
     <div className="app">
-      <h1>TODO React Firebase</h1>
+      <h1>React Todo</h1>
       <form>
         <FormControl>
-          <InputLabel>Write a TODO</InputLabel>
+          <InputLabel>Write a task here</InputLabel>
           <Input value={input} onChange={e => setInput(e.target.value)}/>
         </FormControl>
           <Button type='submit' onClick={addTodo} variant="contained" color='primary' disabled={!input}>Add Todo</Button>

@@ -1,7 +1,7 @@
 import {List, ListItem, ListItemAvatar, ListItemText} from '@material-ui/core';
 import { DeleteForever } from '@material-ui/icons/';
 import React from "react";
-import { db } from '../firebase';
+import { db } from '../confidential/firebase';
 import './Todo.css'
 
 export const Todo = ({arr})=>{
