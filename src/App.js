@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Button, Input, Snackbar } from '@material-ui/core';
+import { FormControl, InputLabel, Button, Input } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Todo } from './components/Todo';
@@ -19,12 +19,24 @@ function App() {
       })))
     })
   }, [input])
-
+  
+  const dateFormate = timestamp => {
+    let date = new Date(timestamp);
+    return (
+        "Date: " + date.getDate() +
+        "/" + (date.getMonth()+1) +
+        "/" + (date.getFullYear()) +
+        " " + (date.getHours()>12?date.getHours()-12:date.getHours()) +
+        ":" + (date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()) +
+        " " + (date.getHours()>12?"PM":"AM")
+    );
+}
   const addTodo = e => {
     e.preventDefault();
     db.collection('todos').add({
       todo : input,
-      timestamp : firebase.firestore.FieldValue.serverTimestamp()
+      createdAt : dateFormate(firebase.firestore.Timestamp.now().toMillis()),
+      timestamp : firebase.firestore.Timestamp.now()
     })
     setInput('');
   }
