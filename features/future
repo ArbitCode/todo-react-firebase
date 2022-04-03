@@ -6,20 +6,22 @@
     3. UAT -> user acceptance testing
     4. PROD -> production
 
-2. add login/logout authentication
+2. make responsive 
 
-3. drag and drop cards
+3. add login/logout authentication
 
-4. check card to move down in completed div
+4. drag and drop cards
 
-5. uncheck card to move up in todo div
+5. check card to move down in completed div
 
-6. delete card in completed div
+6. uncheck card to move up in todo div
 
-7. strike text in completed div
+7. delete card in completed div
 
-8. share
+8. strike text in completed div
 
-9. edit task
+9. share
 
-10. add editor
+10. edit task
+
+11. add editor
