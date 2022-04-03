@@ -1,0 +1,25 @@
+0. input box and button UI
+
+1. add diff env for testing
+    1. DEV -> devlopment testing
+    2. SIT -> system intengration testing
+    3. UAT -> user acceptance testing
+    4. PROD -> production
+
+2. add login/logout authentication
+
+3. drag and drop cards
+
+4. check card to move down in completed div
+
+5. uncheck card to move up in todo div
+
+6. delete card in completed div
+
+7. strike text in completed div
+
+8. share
+
+9. edit task
+
+10. add editor
