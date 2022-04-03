@@ -24,6 +24,6 @@ yarn-error.log*
 
 #firebase
 .firebaserc
-.firebase
+.firebase/
 src/confidential
 
