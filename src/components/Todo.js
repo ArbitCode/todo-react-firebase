@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import WorkIcon from '@material-ui/icons/Work';
 
 export const Todo = ({arr})=>{
-    
+    let hello = "world";
     return (
         <List className="todo__list">
             <ListItem>
