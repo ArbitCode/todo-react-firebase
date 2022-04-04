@@ -14,7 +14,7 @@ Clone and install dependency
 
 ### `npm start`
 
-Test setup
+## Firebase setup
 
 ### `npm test`
 
