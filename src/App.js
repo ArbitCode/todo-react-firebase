@@ -4,7 +4,8 @@ import './App.css';
 import { Todo } from './components/Todo';
 import {db} from './confidential/firebase'
 import firebase from 'firebase/compat/app';
-
+import { DoneTask } from './components/DoneTask';
+var DATABASE = 'todos'
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const [input, setInput] = useState('');
   
   useEffect(()=>{
-    db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapsot =>{
+    db.collection(DATABASE).orderBy('timestamp', 'desc').onSnapshot(snapsot =>{
       setTodos(snapsot.docs.map(doc => ({
         id: doc.id,
         item: doc.data()
@@ -33,14 +34,18 @@ function App() {
 }
   const addTodo = e => {
     e.preventDefault();
-    db.collection('todos').add({
+    db.collection(DATABASE).add({
       todo : input,
       createdAt : dateFormate(firebase.firestore.Timestamp.now().toMillis()),
-      timestamp : firebase.firestore.Timestamp.now()
+      timestamp : firebase.firestore.Timestamp.now(),
+      isChecked : false
     })
     setInput('');
   }
 
+  let donetask = todos.filter(task => task.item.isChecked === true)
+  let todotask = todos.filter(task => task.item.isChecked === false)
+  
   return (
     <div className="app">
       <h1>React Todo</h1>
@@ -51,8 +56,13 @@ function App() {
         </FormControl>
           <Button type='submit' onClick={addTodo} variant="contained" color='primary' disabled={!input}>Add Todo</Button>
       </form>
+      <hr/>
       <ul>
-        {todos.map(it=><Todo key={it.id} arr={it} />)}
+        {todotask.map(it=><Todo key={it.id} arr={it} />)}
+      </ul>
+      <h3>Completed task</h3>
+      <ul>
+        {donetask.map(it=><DoneTask key={it.id} arr={it} />)}
       </ul>
     </div>
   );
