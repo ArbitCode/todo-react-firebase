@@ -4,14 +4,10 @@ import React from "react";
 import { db } from '../confidential/firebase';
 import './DoneTask.css'
 import Avatar from '@material-ui/core/Avatar';
-import WorkIcon from '@material-ui/icons/Work';
 import { Checkbox } from '@mui/material';
 import { useState } from 'react';
 import firebase from 'firebase/compat/app';
-
-
-
-var DATABASE = "todos"
+import {DATABASE_TABLE} from '../conn/ConnInfo.js'
 
 
 export const DoneTask = ({arr})=>{
@@ -20,7 +16,7 @@ export const DoneTask = ({arr})=>{
 
     const setCheckBox = (event) => {
         setChecked(event.target.checked)
-        db.collection(DATABASE).doc(doneTaskList?.id).update({isChecked:!checked}, {timestamp:firebase.firestore.Timestamp.now()})   
+        db.collection(DATABASE_TABLE).doc(doneTaskList?.id).update({isChecked:!checked}, {timestamp:firebase.firestore.Timestamp.now()})   
     }
 
     return (
@@ -28,7 +24,7 @@ export const DoneTask = ({arr})=>{
             <ListItem>
                 <ListItemAvatar>
                     <Avatar>
-                        <DeleteForever fontSize='large' onClick = {()=> {db.collection(DATABASE).doc(doneTaskList?.id).delete()}}/>
+                        <DeleteForever fontSize='large' onClick = {()=> {db.collection(DATABASE_TABLE).doc(doneTaskList?.id).delete()}}/>
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={doneTaskList?.item?.todo} secondary={doneTaskList?.item?.createdAt}/>
