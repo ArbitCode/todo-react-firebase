@@ -31,7 +31,7 @@ function App() {
         ":" + (date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()) +
         " " + (date.getHours()>12?"PM":"AM")
     );
-}
+  }
   const addTodo = e => {
     e.preventDefault();
     db.collection(DATABASE_TABLE).add({
@@ -43,8 +43,8 @@ function App() {
     setInput('');
   }
 
-  let donetask = todos.filter(task => task.item.isChecked === true)
-  let todotask = todos.filter(task => task.item.isChecked === false)
+  let donetask = todos.filter((task) => task.item.isChecked === true)
+  let todotask = todos.filter((task) => task.item.isChecked === false)
   
   return (
     <div className="app">
@@ -58,11 +58,11 @@ function App() {
       </form>
       <hr/>
       <ul>
-        {todotask.map(it=><Todo key={it.id} arr={it} />)}
+        {todotask.map((element) => <Todo key={element.id} task={element} />)}
       </ul>
       <h3>Completed task</h3>
       <ul>
-        {donetask.map(it=><DoneTask key={it.id} arr={it} />)}
+        {donetask.map((element) => <DoneTask key={element.id} task={element} />)}
       </ul>
     </div>
   );
