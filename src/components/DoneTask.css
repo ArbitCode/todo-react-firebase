@@ -1,0 +1,11 @@
+.donetask__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    border: 2px solid lightgray;
+    margin-bottom: 10px !important;
+    background-color: rgb(190, 212, 95);
+    border-radius: 10px;
+    
+}
