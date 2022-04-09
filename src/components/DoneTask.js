@@ -28,11 +28,10 @@ export const DoneTask = ({arr})=>{
             <ListItem>
                 <ListItemAvatar>
                     <Avatar>
-                        <WorkIcon />
+                        <DeleteForever fontSize='large' onClick = {()=> {db.collection(DATABASE).doc(doneTaskList?.id).delete()}}/>
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={doneTaskList?.item?.todo} secondary={doneTaskList?.item?.createdAt}/>
-                <DeleteForever fontSize='large' onClick = {()=> {db.collection(DATABASE).doc(doneTaskList?.id).delete()}}/>
                 <Checkbox checked={checked} onChange={setCheckBox} inputProps={{'aria-label':'controlled'}}/> 
 
             {/* <> {isTaskDone(checked)}</> */}
