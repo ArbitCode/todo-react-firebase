@@ -5,7 +5,7 @@ import { Todo } from './components/Todo';
 import {db} from './confidential/firebase'
 import firebase from 'firebase/compat/app';
 import { DoneTask } from './components/DoneTask';
-var DATABASE = 'todos'
+import {DATABASE_TABLE} from './conn/ConnInfo.js'
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [input, setInput] = useState('');
   
   useEffect(()=>{
-    db.collection(DATABASE).orderBy('timestamp', 'desc').onSnapshot(snapsot =>{
+    db.collection(DATABASE_TABLE).orderBy('timestamp', 'desc').onSnapshot(snapsot =>{
       setTodos(snapsot.docs.map(doc => ({
         id: doc.id,
         item: doc.data()
@@ -34,7 +34,7 @@ function App() {
 }
   const addTodo = e => {
     e.preventDefault();
-    db.collection(DATABASE).add({
+    db.collection(DATABASE_TABLE).add({
       todo : input,
       createdAt : dateFormate(firebase.firestore.Timestamp.now().toMillis()),
       timestamp : firebase.firestore.Timestamp.now(),

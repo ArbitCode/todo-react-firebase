@@ -1,5 +1,4 @@
 import { List, ListItem, ListItemAvatar, ListItemText,} from '@material-ui/core';
-import { DeleteForever } from '@material-ui/icons/';
 import React from "react";
 import { db } from '../confidential/firebase';
 import './Todo.css'
@@ -7,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import WorkIcon from '@material-ui/icons/Work';
 import { Checkbox } from '@mui/material';
 import { useState } from 'react';
-var DATABASE = "todos"
+import {DATABASE_TABLE} from '../conn/ConnInfo.js'
 
 
 export const Todo = ({arr})=>{
@@ -15,7 +14,7 @@ export const Todo = ({arr})=>{
 
     const setCheckBox = (event) => {
         setChecked(event.target.checked)
-        db.collection(DATABASE).doc(arr.id).update({isChecked:!checked})   
+        db.collection(DATABASE_TABLE).doc(arr.id).update({isChecked:!checked})   
     }
 
     return (
