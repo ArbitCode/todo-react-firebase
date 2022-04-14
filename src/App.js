@@ -1,11 +1,14 @@
-import { FormControl, InputLabel, Button, Input } from '@material-ui/core';
+import { FormControl, Button} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Todo } from './components/Todo';
+import {Dashboard} from './components/Dashboard';
 import {db} from './confidential/firebase'
 import firebase from 'firebase/compat/app';
 import { DoneTask } from './components/DoneTask';
 import {DATABASE_TABLE} from './conn/ConnInfo.js'
+import { TextField } from '@mui/material';
+import { AddTask} from '@mui/icons-material';
 
 
 function App() {
@@ -31,7 +34,7 @@ function App() {
         ":" + (date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()) +
         " " + (date.getHours()>12?"PM":"AM")
     );
-}
+  }
   const addTodo = e => {
     e.preventDefault();
     db.collection(DATABASE_TABLE).add({
@@ -43,26 +46,25 @@ function App() {
     setInput('');
   }
 
-  let donetask = todos.filter(task => task.item.isChecked === true)
-  let todotask = todos.filter(task => task.item.isChecked === false)
+  let donetask = todos.filter((task) => task.item.isChecked === true)
+  let todotask = todos.filter((task) => task.item.isChecked === false)
   
   return (
     <div className="app">
-      <h1>React Todo</h1>
+      <Dashboard/>
       <form>
-        <FormControl>
-          <InputLabel>Write a task here...</InputLabel>
-          <Input value={input} onChange={e => setInput(e.target.value)}/>
-        </FormControl>
-          <Button type='submit' onClick={addTodo} variant="contained" color='primary' disabled={!input}>Add Todo</Button>
+        <FormControl >
+          <TextField color="secondary" label="what is your plan..." value={input}  onChange={e => setInput(e.target.value)}/>
+          </FormControl>
+          <Button type='submit' onClick={addTodo} variant="contained" color='primary' size="medium" endIcon={<AddTask />} disabled={!input}>Enter</Button>
       </form>
       <hr/>
       <ul>
-        {todotask.map(it=><Todo key={it.id} arr={it} />)}
+        {todotask.map((element) => <Todo key={element.id} task={element} />)}
       </ul>
       <h3>Completed task</h3>
       <ul>
-        {donetask.map(it=><DoneTask key={it.id} arr={it} />)}
+        {donetask.map((element) => <DoneTask key={element.id} task={element} />)}
       </ul>
     </div>
   );

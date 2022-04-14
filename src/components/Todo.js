@@ -9,12 +9,12 @@ import { useState } from 'react';
 import {DATABASE_TABLE} from '../conn/ConnInfo.js'
 
 
-export const Todo = ({arr})=>{
+export const Todo = ({task})=>{
     const [checked, setChecked] = useState(false)
 
     const setCheckBox = (event) => {
         setChecked(event.target.checked)
-        db.collection(DATABASE_TABLE).doc(arr.id).update({isChecked:!checked})   
+        db.collection(DATABASE_TABLE).doc(task.id).update({isChecked:!checked})   
     }
 
     return (
@@ -25,7 +25,7 @@ export const Todo = ({arr})=>{
                         <WorkIcon />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={arr.item.todo} secondary={arr?.item?.createdAt}/>
+                <ListItemText primary={task.item.todo} secondary={task?.item?.createdAt}/>
                 <Checkbox checked={checked} onChange={setCheckBox} inputProps={{'aria-label':'controlled'}}/>
             </ListItem>
         </List>
