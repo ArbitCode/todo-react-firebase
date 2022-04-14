@@ -1,11 +1,14 @@
-import { FormControl, InputLabel, Button, Input } from '@material-ui/core';
+import { FormControl, Button} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Todo } from './components/Todo';
+import {Dashboard} from './components/Dashboard';
 import {db} from './confidential/firebase'
 import firebase from 'firebase/compat/app';
 import { DoneTask } from './components/DoneTask';
 import {DATABASE_TABLE} from './conn/ConnInfo.js'
+import { TextField } from '@mui/material';
+import { AddTask} from '@mui/icons-material';
 
 
 function App() {
@@ -48,13 +51,12 @@ function App() {
   
   return (
     <div className="app">
-      <h1>React Todo</h1>
+      <Dashboard/>
       <form>
-        <FormControl>
-          <InputLabel>Write a task here...</InputLabel>
-          <Input value={input} onChange={e => setInput(e.target.value)}/>
-        </FormControl>
-          <Button type='submit' onClick={addTodo} variant="contained" color='primary' disabled={!input}>Add Todo</Button>
+        <FormControl >
+          <TextField color="secondary" label="what is your plan..." value={input}  onChange={e => setInput(e.target.value)}/>
+          </FormControl>
+          <Button type='submit' onClick={addTodo} variant="contained" color='primary' size="medium" endIcon={<AddTask />} disabled={!input}>Enter</Button>
       </form>
       <hr/>
       <ul>
