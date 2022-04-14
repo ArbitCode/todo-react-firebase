@@ -1,3 +1,3 @@
-const DATABASE_TABLE =  "dev_todos"
+const DATABASE_TABLE =  "todos"
 
 export{DATABASE_TABLE}
