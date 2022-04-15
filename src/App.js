@@ -1,14 +1,11 @@
-import { FormControl, Button} from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import './App.css';
-import { Todo } from './components/Todo';
+import { ViewTodoTask } from './components/ViewTodoTask';
 import {Dashboard} from './components/Dashboard';
 import {db} from './confidential/firebase'
-import firebase from 'firebase/compat/app';
-import { DoneTask } from './components/DoneTask';
+import { ViewDoneTask } from './components/ViewDoneTask';
 import {DATABASE_TABLE} from './conn/ConnInfo.js'
-import { TextField } from '@mui/material';
-import { AddTask} from '@mui/icons-material';
+import {Form} from './components/Form';
 
 
 function App() {
@@ -23,28 +20,6 @@ function App() {
       })))
     })
   }, [input])
-  
-  const dateFormate = timestamp => {
-    let date = new Date(timestamp);
-    return (
-        "Date: " + date.getDate() +
-        "/" + (date.getMonth()+1) +
-        "/" + (date.getFullYear()) +
-        " " + (date.getHours()>12?date.getHours()-12:date.getHours()) +
-        ":" + (date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes()) +
-        " " + (date.getHours()>12?"PM":"AM")
-    );
-  }
-  const addTodo = e => {
-    e.preventDefault();
-    db.collection(DATABASE_TABLE).add({
-      todo : input,
-      createdAt : dateFormate(firebase.firestore.Timestamp.now().toMillis()),
-      timestamp : firebase.firestore.Timestamp.now(),
-      isChecked : false
-    })
-    setInput('');
-  }
 
   let donetask = todos.filter((task) => task.item.isChecked === true)
   let todotask = todos.filter((task) => task.item.isChecked === false)
@@ -52,19 +27,14 @@ function App() {
   return (
     <div className="app">
       <Dashboard/>
-      <form>
-        <FormControl >
-          <TextField color="secondary" label="what is your plan..." value={input}  onChange={e => setInput(e.target.value)}/>
-          </FormControl>
-          <Button type='submit' onClick={addTodo} variant="contained" color='primary' size="medium" endIcon={<AddTask />} disabled={!input}>Enter</Button>
-      </form>
-      <hr/>
+      <Form input={input} setInput={setInput}/>
+      <h4>left task: {todotask.length}</h4>
       <ul>
-        {todotask.map((element) => <Todo key={element.id} task={element} />)}
+      {todotask.map((element) => <ViewTodoTask key={element.id} task={element} />)}
       </ul>
-      <h3>Completed task</h3>
+      <h4>Completed task: {donetask.length}</h4>
       <ul>
-        {donetask.map((element) => <DoneTask key={element.id} task={element} />)}
+      {donetask.map((element) => <ViewDoneTask key={element.id} task={element} />)}
       </ul>
     </div>
   );
