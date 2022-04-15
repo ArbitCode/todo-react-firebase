@@ -2,14 +2,14 @@ import { List, ListItem, ListItemAvatar, ListItemText,} from '@material-ui/core'
 import { DeleteForever } from '@material-ui/icons/';
 import React, { useState } from "react";
 import { db } from '../confidential/firebase';
-import './DoneTask.css'
+import '../styles/ViewDoneTask.css'
 import Avatar from '@material-ui/core/Avatar';
 import { Checkbox } from '@mui/material';
 import firebase from 'firebase/compat/app';
 import {DATABASE_TABLE} from '../conn/ConnInfo.js'
 
 
-export const DoneTask = ({task})=>{
+export const ViewDoneTask = ({task})=>{
     const [checked, setChecked] = useState(true)
     
     const setCheckBox = (event) => {

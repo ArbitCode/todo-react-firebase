@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemAvatar, ListItemText,} from '@material-ui/core';
 import React from "react";
 import { db } from '../confidential/firebase';
-import './Todo.css'
+import '../styles/ViewTodoTask.css'
 import Avatar from '@material-ui/core/Avatar';
 import WorkIcon from '@material-ui/icons/Work';
 import { Checkbox } from '@mui/material';
@@ -9,7 +9,7 @@ import { useState } from 'react';
 import {DATABASE_TABLE} from '../conn/ConnInfo.js'
 
 
-export const Todo = ({task})=>{
+export const ViewTodoTask = ({task})=>{
     const [checked, setChecked] = useState(false)
 
     const setCheckBox = (event) => {
