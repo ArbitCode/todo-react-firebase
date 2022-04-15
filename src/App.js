@@ -6,6 +6,8 @@ import {db} from './confidential/firebase'
 import { ViewDoneTask } from './components/ViewDoneTask';
 import {DATABASE_TABLE} from './conn/ConnInfo.js'
 import {Form} from './components/Form';
+import {TodoTaskStatus} from './components/TodoTaskStatus';
+import {DoneTaskStatus} from './components/DoneTaskStatus';
 
 
 function App() {
@@ -28,14 +30,15 @@ function App() {
     <div className="app">
       <Dashboard/>
       <Form input={input} setInput={setInput}/>
-      <h4>left task: {todotask.length}</h4>
+      <TodoTaskStatus nTodo={todotask.length} nDone={donetask.length}/>
       <ul>
       {todotask.map((element) => <ViewTodoTask key={element.id} task={element} />)}
       </ul>
-      <h4>Completed task: {donetask.length}</h4>
+      <DoneTaskStatus nTodo={todotask.length} nDone={donetask.length}/>
       <ul>
       {donetask.map((element) => <ViewDoneTask key={element.id} task={element} />)}
       </ul>
+      <p>Made with 💚 !</p>
     </div>
   );
 }
